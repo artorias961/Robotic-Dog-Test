@@ -1,0 +1,22 @@
+/*
+ * Test-001 Teensy1 devicetree overlay (Teensy 4.1)
+ *
+ * Sends the Zephyr console (log output) to a USB serial port on the Teensy's
+ * micro-USB connector instead of the board's default console UART. Same as
+ * Zephyr's cdc-acm-console snippet, and the same as the legs firmware.
+ *
+ * Ethernet needs nothing here: Zephyr's teensy41 board already turns it on.
+ */
+
+/ {
+	chosen {
+		zephyr,console = &cdc_acm_uart0;
+		zephyr,shell-uart = &cdc_acm_uart0;
+	};
+};
+
+&zephyr_udc0 {
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};

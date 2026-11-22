@@ -1,0 +1,2 @@
+# Zephyr build output for each board (west build ... -d Teensy1\build)
+build/
